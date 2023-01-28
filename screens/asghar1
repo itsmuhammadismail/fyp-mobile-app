@@ -1,0 +1,249 @@
+
+// import axios from "axios";
+// import { useNavigation } from "@react-navigation/core";
+// import React, { useState, useEffect, useReducer, useRef,useMemo,useCallback } from "react";
+// import {
+//   StyleSheet,
+//   Button,
+//   Text,
+//   TextInput,
+//   TouchableOpacity,
+//   View,
+//   Input,
+//   Form,
+//   SafeAreaView,
+//   ScrollView,
+//   StatusBar,
+// } from "react-native";
+// import { auth, database } from "../firebase";
+
+// const intializer = 0;
+// const reducer = (state, action) => {
+//   switch (action) {
+//     case "Add":
+//       if (state === "asghar here") {
+//         return (state = 0);
+//       }
+//       return state + 1;
+//     case "Substract":
+//       return state - 1;
+//     case "Power":
+//       return Math.pow(state, 2);
+//     case "Reset":
+//       return (state = 0);
+//     case "Invalid":
+//       return (state = "asghar here");
+//     default:
+//       throw new Error("invalid");
+//   }
+// };
+
+// const HomeScreen = (props) => {
+//   const navigation = useNavigation();
+
+//   const resultantData = [];
+//   const [islist, setlist] = useState([]);
+//   const [isalert, setalert] = useState([]);
+//   const [jokes, setjokes] = useState("");
+//   const jokearray = [];
+
+//   const [count, dispatch] = useReducer(reducer, intializer);
+
+//   let asghar1 = useRef(null);
+
+//   // const handleSignOut =()=>{
+//   //   auth
+//   //   .signOut()
+//   //   .then(()=>{
+//   //     navigation.replace("Login")
+//   //   })
+//   //   .catch((error)=>{
+//   //     console.error();})
+//   // }
+
+//   const axiosapiget = async () => {
+//     const res = await axios.get(
+//       "http://api.icndb.com/jokes/random?firstName=John&lastName=asghar"
+//     );
+//     setjokes(res);
+//     console.log(setjokes(res));
+//     jokearray.push(res);
+//     console.log("asghar is : :", jokearray);
+//     jokearray.map((item) => {
+//       console.log("a", item);
+//     });
+//   };
+
+//   const handledom = () => {
+//     console.log("asghar123");
+//     asghar1.current.value="asghar"
+//     asghar1.current.focus();
+//     //asghar1.current.style.backgroundColor='red';
+//   };
+
+//   // useEffect(()=>{
+//   //   database
+//   //   .ref("/")
+//   //   .on('value', snapshot => {
+//   //     console.log('User data: ', snapshot.val());
+//   //     setalert(snapshot.val());
+//   //   });
+//   // },[])
+
+//   // useEffect(()=>{
+//   //   if(isalert){
+//   //     for(var key in isalert){
+//   //       if(isalert[key].OfficeAlert){
+//   //         resultantData.push(isalert[key])
+//   //       }
+//   //       //console.log("for if end",resultantData)
+
+//   //     }
+//   //     console.log("for loop end",resultantData)
+//   //     setlist(resultantData)
+//   //   }
+
+//   // },[isalert])
+
+//   return (
+//     <View style={styles.container}>
+//       <SafeAreaView style={styles.container1}>
+//         <ScrollView style={styles.scrollView}>
+//           <Text style={styles.officealert}>
+//             {"Alert Messages For Face Detection!!"}
+//           </Text>
+
+//           {islist?.length > 0
+//             ? islist?.map((item) => {
+//                 console.log("map k item mn kia print ho raha ha", item);
+//                 return (
+//                   <>
+//                     <Text style={styles.alertmsg}>
+//                       {item.OfficeAlert} {item.Id}
+//                     </Text>
+//                   </>
+//                 );
+//               })
+//             : null}
+//           {/* <TouchableOpacity onPress={handleSignOut} style={styles.button}>
+//             <Text style={styles.buttonText}>Sign out</Text>
+//           </TouchableOpacity> */}
+
+//           <TouchableOpacity onPress={axiosapiget} style={styles.button}>
+//             <Text style={styles.buttonText}>api calling</Text>
+//           </TouchableOpacity>
+//           {count < 10 ? <Text>{count}</Text> : <Text>asghar </Text>}
+
+//           <Button
+//             title="Add"
+//             onPress={() => {
+//               dispatch("Add");
+//             }}
+//           />
+//           <Button
+//             title="Substract"
+//             onPress={() => {
+//               dispatch("Substract");
+//             }}
+//           />
+//           <Button
+//             title="Power"
+//             onPress={() => {
+//               dispatch("Power");
+//             }}
+//           />
+//           <Button
+//             title="Reset"
+//             onPress={() => {
+//               dispatch("Reset");
+//             }}
+//           />
+//           <Button
+//             title="Invalid"
+//             onPress={() => {
+//               dispatch("Invalid");
+//             }}
+//           />
+
+          
+          
+//           {/* <Form>
+//             <Input placeholder="name" type="text" secureTextEntry></Input>
+//           </Form>
+
+//           <Button title="Dom " onPress={() => handledom()} /> */}
+
+//           {/* <TouchableOpacity
+//             onPress={() => props.navigation.navigate("Mask")}
+//             style={styles.button}
+//           >
+//             <Text style={styles.buttonText2}>Mask Alert</Text>
+//           </TouchableOpacity> */}
+//         </ScrollView>
+//       </SafeAreaView>
+//     </View>
+//   );
+// };
+
+// export default HomeScreen;
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: "center",
+//     alignItems: "center",
+//     backgroundColor: "white",
+//   },
+
+//   container1: {
+//     flex: 1,
+//     paddingTop: StatusBar.currentHeight,
+//   },
+//   scrollView: {
+//     backgroundColor: "white",
+//     marginHorizontal: 20,
+//   },
+//   text: {
+//     fontSize: 42,
+//   },
+//   officealert: {
+//     color: "black",
+//     fontSize: 20,
+//     marginBottom: 30,
+//     fontWeight: "bold",
+//     marginLeft: 10,
+//   },
+//   button: {
+//     backgroundColor: "#0782F9",
+//     width: "60%",
+//     padding: 15,
+//     borderRadius: 10,
+//     alignItems: "center",
+//     marginTop: 20,
+//     marginLeft: 70,
+//     marginBottom: 3,
+//   },
+//   alertmsg: {
+//     //backgroundColor:'red',
+//     color: "white",
+//     fontSize: 18,
+//     marginTop: 10,
+//     textAlign: "center",
+//     borderRadius: 10,
+//     marginRight: 10,
+//     backgroundColor: "#0782F9",
+//     borderColor: "#0782F9",
+//     borderWidth: 5,
+//     alignItems: "center",
+//   },
+//   buttonText: {
+//     color: "white",
+//     fontWeight: "500",
+//     fontSize: 14,
+//   },
+//   buttonText2: {
+//     color: "white",
+//     fontWeight: "500",
+//     fontSize: 14,
+//   },
+// });
